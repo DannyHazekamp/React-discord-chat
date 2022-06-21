@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Friends = () => {
     return (
-        <div>
+        <>
             <div className="row mt-3">
                 <div className="col-10">
                     <p className="discordColor3-t">Direct messages</p>
@@ -18,7 +18,7 @@ const Friends = () => {
             <FriendIcon />
             <FriendIcon />
             <FriendIcon />
-        </div>
+        </>
     )
 }
 
