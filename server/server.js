@@ -11,7 +11,7 @@ let usersRoom = []
 let privateMessages = []
 let reactMessages = []
 let vueMessages = []
-
+let unseenMessages = []
 io.on('connection', socket =>{
     socket.join(socket.id)
 
@@ -36,6 +36,13 @@ io.on('connection', socket =>{
         io.in(payload.room).emit('roomUsersPrivate', privateMessages)
     })
 
+    socket.on('messagesUnseen', payload => {
+        console.log(payload)
+        unseenMessages.push({room: payload.room, message: payload.message, username: payload.userName})
+        console.log('unseen here')
+        io.sockets.emit('unseenMessages', unseenMessages)
+    })
+
     socket.on('privateChat', data => {
          //socket.to(data).emit("private message", socket.id, 'hello there')
         console.log(data)
@@ -57,6 +64,7 @@ io.on('connection', socket =>{
 
     socket.on('userToHome', () => {
         io.sockets.emit('usersList', users)
+        io.sockets.emit('unseenMessages', unseenMessages)
     })
 
 

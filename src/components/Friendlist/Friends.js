@@ -15,9 +15,6 @@ const Friends = () => {
                 </div>
             </div>
             <FriendIcon />
-            <FriendIcon />
-            <FriendIcon />
-            <FriendIcon />
         </>
     )
 }

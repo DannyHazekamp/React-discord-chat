@@ -39,6 +39,7 @@ const PrivateChat = () => {
     const sendMessage = (e) => {
         e.preventDefault();
         socket.emit('messagePrivate', {userName, message, room})
+        socket.emit('messagesUnseen', {userName, message, room})
         setMessage('')
     }
 

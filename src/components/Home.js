@@ -15,6 +15,7 @@ const Home = () => {
 
     const [users, setUsers] = useState([])
     const [onlineUsers, setOnlineUsers] = useState([])
+    const [unseenMessages, setUnseenMessages] = useState([])
     useEffect(() => {
         socket.on('usersList', data => {
             console.log(data)
@@ -22,6 +23,15 @@ const Home = () => {
             console.log(JSON.stringify(uniqueUsers))
             setUsers([uniqueUsers])
             setOnlineUsers([uniqueUsers.length])
+        })
+
+        socket.on('unseenMessages', data => {
+            console.log(data)
+            console.log(socket.id)
+            setUnseenMessages(data)
+
+            console.log(unseenMessages)
+            console.log('you have unseen messages')
         })
 
 
@@ -72,14 +82,14 @@ const Home = () => {
                                                 </a>
                                             </div>
                                             <div className="col">
-                                                <span className="discordColor3-t">{userName[1]}</span>
-                                                <span>Status</span>
+                                                <span className="text-white fw-bold">{userName[1]}</span> <br></br>
+                                                <span className="discordColor3-t">Online</span>
                                             </div>
                                             <div className="col discordColor3-t">
                                                 <Link className="text-decoration-none" onClick={() => privateUser(userName[0])} to="/privatechat">
                                                     <i className="fa-solid me-4 fa-xl fa-message"></i>
                                                 </Link>
-                                                <i className="fa-solid fa-xl fa-ellipsis-vertical"></i>
+                                                {userName[0] === socket.id ? unseenMessages.filter(p => p.room === socket.id).length + ' messages obtained' : unseenMessages.filter(p => p.room !== socket.id && p.room === userName[0] && p.username === sessionStorage.getItem('user')).length + ' messages sent'}
                                             </div>
                                         </div>
                                         </>
