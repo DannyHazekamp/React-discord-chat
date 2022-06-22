@@ -13,7 +13,7 @@ const ChannelChat = () => {
 
     useEffect(() => {
         socket.on('message', payload => {
-            setChat([...chat, payload])
+            setChat([payload])
         })
     });
 
@@ -30,7 +30,13 @@ const ChannelChat = () => {
                     <ul className="messageWindow list-group mh-100" id="messages">
                         {chat.map((payload, index) => {
                             return (
-                                <li key={index} className="fontSize p-1 discordColor3-t">{payload.userName}: <span>{payload.message}</span></li>
+                                <>
+                                    {payload.map((data, index) => {
+                                        return (
+                                            <li key={index} className="fontSize p-1 discordColor3-t">{data.userName}: <span>{data.message}</span></li>
+                                        )
+                                    })}
+                                </>
                             )
                         })}
                     </ul>

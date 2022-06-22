@@ -64,7 +64,7 @@ const Home = () => {
                                     }
                                     return (
                                         <>
-                                        <div key={index} className=" border-top border-secondary row align-content-center">
+                                        <div key={userName[0]} className=" border-top border-secondary row align-content-center">
                                             <div className="col">
                                                 <a href="src/components/Friendlist/FriendIcon#"
                                                    className="text-decoration-none  ripple" aria-current="true">

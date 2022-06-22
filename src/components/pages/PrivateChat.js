@@ -12,13 +12,26 @@ const PrivateChat = () => {
     const userName = sessionStorage.getItem('user')
 
     useEffect(() => {
+
         socket.on('userJoined', payload => {
-            setRoom(payload)
+            console.log(payload)
+            console.log(socket.id)
+            if(payload !== socket.id) {
+                setRoom(payload)
+            }
+        })
+
+        socket.on('userJoinedSelf', payload => {
+            if(payload === socket.id) {
+                setRoom(payload)
+            }
         })
 
         socket.on('privateMessage', payload => {
             console.log(payload)
-            setChat([payload])
+            console.log(room)
+            let chatRoom = payload.filter(p => p.room === room || p.room === socket.id)
+            setChat([chatRoom])
         })
     });
 
@@ -48,10 +61,12 @@ const PrivateChat = () => {
                             {chat.map((payload, index) => {
                                 return (
                                     <>
-                                    {payload.map((data, index) => {
-                                       return (
-                                           <li key={index} className="fontSize p-1 discordColor3-t">{data.room} {data.userName}: <span>{data.message}</span></li>
-                                       )
+                                    {payload.filter(p => p.room === room).map((data, index) => {
+                                            return (
+                                                <li key={data.room}
+                                                    className="fontSize p-1 discordColor3-t">{data.room} {data.userName}: <span>{data.message}</span>
+                                                </li>
+                                            )
                                     })}
                                     </>
                                 )

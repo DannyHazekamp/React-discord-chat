@@ -9,19 +9,29 @@ const io = require('socket.io')(server, {
 let users = []
 let usersRoom = []
 let privateMessages = []
-
+let reactMessages = []
+let vueMessages = []
 
 io.on('connection', socket =>{
+    socket.join(socket.id)
+
     console.log('connection made succesfully')
     socket.on('message', payload => {
         console.log('message received on server:  ', payload)
-        io.in(payload.room).emit('message', payload)
-        io.in(payload.room).emit('roomUsers', payload)
+        if(payload.room === 'React') {
+            reactMessages.push(payload)
+            io.in(payload.room).emit('message', reactMessages)
+            //io.in(payload.room).emit('roomUsers', reactMessages)
+        } else {
+            vueMessages.push(payload)
+            io.in(payload.room).emit('message', vueMessages)
+           // io.in(payload.room).emit('roomUsers', vueMessages)
+        }
     })
 
     socket.on('messagePrivate', payload => {
         console.log('message received on server:  ', payload)
-        privateMessages.push(payload)
+        privateMessages.push({room: payload.room, message: payload.message, userName: payload.userName})
         io.in(payload.room).emit('privateMessage', privateMessages)
         io.in(payload.room).emit('roomUsersPrivate', privateMessages)
     })
@@ -29,9 +39,15 @@ io.on('connection', socket =>{
     socket.on('privateChat', data => {
          //socket.to(data).emit("private message", socket.id, 'hello there')
         console.log(data)
-        socket.join(data)
-        io.in(data).emit('userJoined', data)
-        io.in(data).emit('privateMessage', privateMessages)
+        if(socket.id !== data) {
+            socket.join(data)
+            io.in(data).emit('userJoined', data)
+            io.in(data).emit('privateMessage', privateMessages)
+        } else {
+            socket.join(socket.id)
+            io.in(data).emit('userJoinedSelf', socket.id)
+            io.in(data).emit('privateMessage', privateMessages)
+        }
     })
 
     socket.on('logoutUser', user => {
@@ -67,8 +83,10 @@ io.on('connection', socket =>{
             socket.join(data.room)
             if(data.room === 'React') {
                 io.in(data.room).emit('roomUsers', usersReact)
+                io.in(data.room).emit('message', reactMessages)
             } else {
                 io.in(data.room).emit('roomUsers', usersVue)
+                io.in(data.room).emit('message', vueMessages)
             }
         }catch(e) {
             console.log('[error]', 'join room :', e)
