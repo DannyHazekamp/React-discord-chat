@@ -23,7 +23,6 @@ const DiscordServer = () => {
 
     return (
         <>
-            <div className="DiscordServer">
                 <div className="row">
                     <Header></Header>
                 </div>
@@ -57,7 +56,6 @@ const DiscordServer = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     )
 }

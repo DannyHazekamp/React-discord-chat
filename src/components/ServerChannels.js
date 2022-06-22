@@ -7,12 +7,12 @@ const ServerChannels = () => {
         <>
             <div className="row">
                 <h5 className="fw-bold text-white">Server name</h5>
-            </div>
-            <div className="row">
                 <ServerChannel />
                 <ServerChannel2 />
             </div>
-            <ProfileBar />
+            <div className="row min-vh-100">
+                <ProfileBar />
+            </div>
         </>
     )
 }

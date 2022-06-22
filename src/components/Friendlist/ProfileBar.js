@@ -3,7 +3,7 @@ import discordicon from "../../img/discordicon.png";
 const ProfileBar = () => {
     const user = sessionStorage.getItem('user')
     return (
-        <div className="row  align-self-end">
+        <div className="d-flex align-items-end align-self-end">
             <div className="col align-self-center">
                 <a href="src/components/Friendlist/ProfileBar#" className="text-decoration-none discordColor2  ripple" aria-current="true">
                     <img alt="serverIcon" className="friendIcon" src={discordicon} />

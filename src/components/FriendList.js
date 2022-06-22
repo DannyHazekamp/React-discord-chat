@@ -4,12 +4,16 @@ import Friends from "./Friendlist/Friends";
 import ProfileBar from "./Friendlist/ProfileBar";
 const FriendList = () => {
     return (
+        <>
         <div className="row">
            <SearchFriends></SearchFriends>
            <Options></Options>
            <Friends></Friends>
-           <ProfileBar></ProfileBar>
         </div>
+            <div className="row h-75">
+            <ProfileBar></ProfileBar>
+            </div>
+            </>
     )
 }
 
