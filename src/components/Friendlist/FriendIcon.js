@@ -1,6 +1,7 @@
 import discordicon from "../../img/discordicon.png";
 import {useEffect, useState} from "react";
 import {socket} from "../socket";
+import {Link} from "react-router-dom";
 
 const FriendIcon = () => {
 
@@ -17,12 +18,7 @@ const FriendIcon = () => {
         })
 
         socket.on('unseenMessages', data => {
-            console.log(data)
-            console.log(socket.id)
             setUnseenMessages(data)
-
-            console.log(unseenMessages)
-            console.log('you have unseen messages')
         })
     })
 
@@ -33,13 +29,17 @@ const FriendIcon = () => {
                         return (
                             <div key={index} className="row">
                                 {user.map((userName) => {
-                                    return (
-                                        <a href="src/components/Friendlist/FriendIcon#"
-                                           className="text-decoration-none discordColor2 py-2 ripple" aria-current="true">
-                                            <img alt="serverIcon" className="friendIcon" src={discordicon}/>
-                                            <span className="discordColor3-t">{userName[1]}</span>
-                                        </a>
-                                    )
+                                    const privateUser = (data) => {
+                                        socket.emit('privateChat', data)
+                                    }
+                                    if(userName[1] !== sessionStorage.getItem('user')) {
+                                        return (
+                                            <Link className="text-decoration-none discordColor2" onClick={() => privateUser(userName[0])} to="/privatechat">
+                                                <img alt="serverIcon" className="friendIcon" src={discordicon}/>
+                                                <span className="discordColor3-t">{userName[1]}</span>
+                                            </Link>
+                                        )
+                                    }
                                 })}
                             </div>
                         )

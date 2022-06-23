@@ -15,9 +15,7 @@ let unseenMessages = []
 io.on('connection', socket =>{
     socket.join(socket.id)
 
-    console.log('connection made succesfully')
     socket.on('message', payload => {
-        console.log('message received on server:  ', payload)
         if(payload.room === 'React') {
             reactMessages.push(payload)
             io.in(payload.room).emit('message', reactMessages)
@@ -30,30 +28,28 @@ io.on('connection', socket =>{
     })
 
     socket.on('messagePrivate', payload => {
-        console.log('message received on server:  ', payload)
         privateMessages.push({room: payload.room, message: payload.message, userName: payload.userName})
         io.in(payload.room).emit('privateMessage', privateMessages)
         io.in(payload.room).emit('roomUsersPrivate', privateMessages)
     })
 
     socket.on('messagesUnseen', payload => {
-        console.log(payload)
         unseenMessages.push({room: payload.room, message: payload.message, username: payload.userName})
-        console.log('unseen here')
         io.sockets.emit('unseenMessages', unseenMessages)
     })
 
     socket.on('privateChat', data => {
          //socket.to(data).emit("private message", socket.id, 'hello there')
-        console.log(data)
         if(socket.id !== data) {
             socket.join(data)
             io.in(data).emit('userJoined', data)
             io.in(data).emit('privateMessage', privateMessages)
+            io.in(data).emit('usersList', users)
         } else {
             socket.join(socket.id)
             io.in(data).emit('userJoinedSelf', socket.id)
             io.in(data).emit('privateMessage', privateMessages)
+            io.in(data).emit('usersList', users)
         }
     })
 

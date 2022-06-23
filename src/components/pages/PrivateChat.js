@@ -3,9 +3,12 @@ import ServerList from "../ServerList";
 import FriendList from "../FriendList";
 import {useEffect, useState} from "react";
 import {socket} from "../socket";
+import FriendStatus from "../FriendStatus";
+import React from "react";
 
 const PrivateChat = () => {
 
+    const [users, setUsers] = useState([])
     const [message, setMessage] = useState('')
     const [chat, setChat] = useState([])
     const [room, setRoom] = useState('')
@@ -14,8 +17,6 @@ const PrivateChat = () => {
     useEffect(() => {
 
         socket.on('userJoined', payload => {
-            console.log(payload)
-            console.log(socket.id)
             if(payload !== socket.id) {
                 setRoom(payload)
             }
@@ -27,10 +28,14 @@ const PrivateChat = () => {
             }
         })
 
+        socket.on('usersList', data => {
+            const uniqueUsers = Array.from(new Set(data.map(item => [item.id, item.userName])))
+            setUsers([uniqueUsers])
+        })
+
+
         socket.on('privateMessage', payload => {
-            console.log(payload)
-            console.log(room)
-            let chatRoom = payload.filter(p => p.room === room || p.room === socket.id)
+            let chatRoom = payload.filter(p => p.room === room)
             setChat([chatRoom])
         })
     });
@@ -56,7 +61,7 @@ const PrivateChat = () => {
                 <div className="discordColor2 col-2">
                     <FriendList></FriendList>
                 </div>
-                <div className="col-9 discordColor3 me-0">
+                <div className="col-7 discordColor3 me-0">
                     <div className="row vh-100 text-white">
                         <ul className="messageWindow list-group mh-100" id="messages">
                             {chat.map((payload, index) => {
@@ -64,7 +69,7 @@ const PrivateChat = () => {
                                     <>
                                     {payload.filter(p => p.room === room).map((data, index) => {
                                             return (
-                                                <li key={data.room}
+                                                <li key={index}
                                                     className="fontSize p-1 discordColor3-t">{data.room} {data.userName}: <span>{data.message}</span>
                                                 </li>
                                             )
@@ -82,6 +87,20 @@ const PrivateChat = () => {
                             <button type="submit" className="btn ms-0 btn-success">Send</button>
                         </div>
                     </form>
+                </div>
+                <div className="col-2 discordColor3">
+                    <h1 className="text-white fw-bold">Active now</h1>
+                    {users.map((user, index) => {
+                        return (
+                            <ul className="messageWindow list-group mh-100" key={index} id="users">
+                                {user.map((userName, index) => {
+                                    return (
+                                        <li className="fontSize p-1 discordColor3-t" key={index}>{userName[1]} </li>
+                                    )
+                                })}
+                            </ul>
+                        )
+                    })}
                 </div>
             </div>
         </>

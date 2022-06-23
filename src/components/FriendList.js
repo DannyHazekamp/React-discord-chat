@@ -10,7 +10,7 @@ const FriendList = () => {
            <Options></Options>
            <Friends></Friends>
         </div>
-            <div className="row h-75">
+            <div className="row">
             <ProfileBar></ProfileBar>
             </div>
             </>

@@ -20,7 +20,6 @@ const ChannelChatTwo = () => {
 
     const sendMessage2 = (e) => {
         e.preventDefault();
-        console.log(message);
         socket.emit('message', {userName, message, room})
         setMessage('')
     }

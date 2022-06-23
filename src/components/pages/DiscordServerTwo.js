@@ -14,7 +14,6 @@ const DiscordServerTwo = () => {
 
     useEffect(() => {
         socket.on('roomUsers', data => {
-            console.log(data)
             const uniqueUsers = Array.from(new Set(data.map(item => item.userName)))
             setUsers( [uniqueUsers])
         })

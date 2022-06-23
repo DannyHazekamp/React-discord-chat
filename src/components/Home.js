@@ -18,20 +18,13 @@ const Home = () => {
     const [unseenMessages, setUnseenMessages] = useState([])
     useEffect(() => {
         socket.on('usersList', data => {
-            console.log(data)
             const uniqueUsers = Array.from(new Set(data.map(item => [item.id, item.userName])))
-            console.log(JSON.stringify(uniqueUsers))
             setUsers([uniqueUsers])
             setOnlineUsers([uniqueUsers.length])
         })
 
         socket.on('unseenMessages', data => {
-            console.log(data)
-            console.log(socket.id)
             setUnseenMessages(data)
-
-            console.log(unseenMessages)
-            console.log('you have unseen messages')
         })
 
 
@@ -39,7 +32,6 @@ const Home = () => {
 
         })
     })
-    console.log(JSON.stringify(users))
 
     const auth = useAuth()
     return (
