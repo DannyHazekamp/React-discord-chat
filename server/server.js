@@ -6,6 +6,7 @@ const io = require('socket.io')(server, {
     }
 })
 
+
 let users = []
 let usersRoom = []
 let privateMessages = []
@@ -13,6 +14,7 @@ let reactMessages = []
 let vueMessages = []
 let unseenMessages = []
 io.on('connection', socket =>{
+    io.to(socket.id).emit('disconnected')
     socket.join(socket.id)
 
     socket.on('message', payload => {
@@ -78,12 +80,10 @@ io.on('connection', socket =>{
     socket.on('setRoom', data => {
         try{
             console.log('[socket]','join room :',data.room)
-
             usersRoom.push({room: data.room, userName: data.userName})
 
             let usersReact = usersRoom.filter(p => p.room === 'React')
             let usersVue = usersRoom.filter(v => v.room === 'Vue')
-            console.log(usersRoom)
             socket.join(data.room)
             if(data.room === 'React') {
                 io.in(data.room).emit('roomUsers', usersReact)
@@ -95,7 +95,16 @@ io.on('connection', socket =>{
         }catch(e) {
             console.log('[error]', 'join room :', e)
         }
-    } )
+    })
+
+    socket.on('updateUser', data => {
+        console.log(data)
+        users = users.filter(p => p.userName !== data.oldUser)
+        users.push({id: socket.id, userName: data.newUser})
+        console.log(users)
+        io.sockets.emit('usersList', users)
+
+    })
 
     socket.on('leaveRoom', data => {
         try{

@@ -51,6 +51,10 @@
   border-right: 1px dashed #FFFF;
 }
 
+.modalBorder {
+  border-color: rgba(44, 47, 51, 0.93)
+}
+
 .searchbar-w {
   width: 2rem;
 }
@@ -67,4 +71,20 @@
   font-size: 1.5rem;
 }
 
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.modal-header {
+  border-bottom: 0 none;
+}
+
+.modal-footer {
+  border-top: 0 none;
+}
+
+.modal-content {
+  border: 0 none;
+}
 
