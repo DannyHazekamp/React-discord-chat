@@ -84,7 +84,25 @@ a:-webkit-any-link {
   border-top: 0 none;
 }
 
+//body {
+//  -ms-overflow-style: none;
+//  overflow-y: hidden;
+//}
+//
+//body::-webkit-scrollbar {
+//  display: none;
+//}
+
 .modal-content {
   border: 0 none;
 }
+
+.fullH {
+  height: 100%;
+}
+
+//html, body {
+//  height: 100vh;
+//  width: 100vw;
+//}
 

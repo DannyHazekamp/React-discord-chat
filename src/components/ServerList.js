@@ -4,9 +4,9 @@ import HomeButton from "./HomeButton";
 const ServerList = () => {
     return (
         <>
-        <nav id="sidebarMenu" className="collapse discordColor1 d-lg-block sidebar collapse ">
-            <div className="position-sticky h-100 discordColor1">
-                <div className="list-group discordColor1 list-group-flush mx-3 mt-4">
+        <nav id="sidebarMenu" className=" position-sticky d-sm-block d-md-block d-lg-block discordColor1 sidebar">
+            <div className="position-sticky discordColor1">
+                <div className="list-group text-center discordColor1">
                         <HomeButton />
                         <ServerIcon/>
                 </div>

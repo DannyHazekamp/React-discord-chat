@@ -8,11 +8,6 @@ const Friends = () => {
                 <div className="col-10">
                     <p className="discordColor3-t">Direct messages</p>
                 </div>
-                <div className="col-2">
-                    <span className="discordColor3-t">
-                        <i className="fa-solid fa-xl fa-plus"></i>
-                    </span>
-                </div>
             </div>
             <FriendIcon />
         </>

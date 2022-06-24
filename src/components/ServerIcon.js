@@ -14,7 +14,7 @@ const ServerIcon = () => {
     return (
 
                 <Link onClick={joinRoom} to="/server">
-                     <img alt="serverIcon" className="img-fluid" src={discordicon} />
+                     <img alt="serverIcon" className="mx-auto img-fluid" src={discordicon} />
                 </Link>
     )
 }

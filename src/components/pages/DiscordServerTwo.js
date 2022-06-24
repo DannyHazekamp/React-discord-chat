@@ -40,6 +40,7 @@ const DiscordServerTwo = () => {
                                 <ChannelChatTwo />
                             </div>
                             <div className="text-white discordColor2 col-3">
+                                <h1 className="text-white fw-bold">Active now</h1>
                                 {users.map((el, index) => {
                                     return (
                                         <ul className="messageWindow list-group mh-100" key={index} id="users">

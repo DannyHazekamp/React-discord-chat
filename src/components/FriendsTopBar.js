@@ -21,9 +21,6 @@ const FriendsTopBar = () => {
                     Friends
                 </span>
                 <span className="align-middle fw-bold me-4">Online</span>
-                <div className="buttonWidth">
-                    <button type="button" onClick={handleLogout} className="btn btn-danger">Logout</button>
-                </div>
             </div>
         </div>
     )

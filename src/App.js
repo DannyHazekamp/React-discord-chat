@@ -33,14 +33,16 @@ function App() {
   return (
 
       <AuthProvider>
-        <div className="App container-fluid">
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/home" element={<RequireAuth><Home /></RequireAuth>} />
-                <Route path="/server" element={<RequireAuth><DiscordServer /></RequireAuth>} />
-                <Route path="/serverchanneltwo" element={<RequireAuth><DiscordServerTwo /></RequireAuth>} />
-                <Route path="/privatechat" element={<RequireAuth><PrivateChat /></RequireAuth>} />
-            </Routes>
+        <div className="App">
+            <div className="container-fluid">
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/home" element={<RequireAuth><Home /></RequireAuth>} />
+                    <Route path="/server" element={<RequireAuth><DiscordServer /></RequireAuth>} />
+                    <Route path="/serverchanneltwo" element={<RequireAuth><DiscordServerTwo /></RequireAuth>} />
+                    <Route path="/privatechat" element={<RequireAuth><PrivateChat /></RequireAuth>} />
+                </Routes>
+            </div>
         </div>
       </AuthProvider>
   );

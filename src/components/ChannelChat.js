@@ -26,7 +26,7 @@ const ChannelChat = () => {
 
     return (
         <>
-                <div className="row vh-100 text-white">
+                <div className="row min-vh-100 text-white">
                     <ul className="messageWindow list-group mh-100" id="messages">
                         {chat.map((payload, index) => {
                             return (
