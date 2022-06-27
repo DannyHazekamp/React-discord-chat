@@ -3,7 +3,6 @@ import ServerList from "../ServerList";
 import FriendList from "../FriendList";
 import {useEffect, useState} from "react";
 import {socket} from "../socket";
-import FriendStatus from "../FriendStatus";
 import React from "react";
 
 const PrivateChat = () => {
@@ -33,13 +32,11 @@ const PrivateChat = () => {
             setUsers([uniqueUsers])
         })
 
-
         socket.on('privateMessage', payload => {
             let chatRoom = payload.filter(p => p.room === room)
             setChat([chatRoom])
         })
     });
-
 
     const sendMessage = (e) => {
         e.preventDefault();
@@ -48,59 +45,62 @@ const PrivateChat = () => {
         setMessage('')
     }
 
-
     return (
         <>
-            <div className="row">
+            <div className="row m-auto">
                 <Header></Header>
             </div>
-            <div className="row min-vh-100">
-                <div className="col-1 sideBar-w discordColor1">
+            <div className="row m-auto min-vh-100">
+                <div className="col-sm-1 col-md-1 col-lg-1 sideBar-w discordColor1">
                     <ServerList></ServerList>
                 </div>
-                <div className="discordColor2 col-2">
+                <div className="discordColor2 col-sm-2 col-md-2 col-lg-2">
                     <FriendList></FriendList>
                 </div>
-                <div className="col-7 discordColor3 me-0">
-                    <div className="row vh-100 text-white">
-                        <ul className="messageWindow list-group mh-100" id="messages">
-                            {chat.map((payload, index) => {
-                                return (
-                                    <>
-                                    {payload.filter(p => p.room === room).map((data, index) => {
-                                            return (
-                                                <li key={index}
-                                                    className="fontSize p-1 discordColor3-t">{data.room} {data.userName}: <span>{data.message}</span>
-                                                </li>
-                                            )
+                <div className="col-sm-9 col-md-9 col-lg-9">
+                    <div className="row">
+                        <div className="col-9 discordColor3 me-0">
+                            <div className="row vh-100 text-white">
+                                <ul className="messageWindow list-group mh-100" id="messages">
+                                    {chat.map((payload, index) => {
+                                        return (
+                                            <>
+                                            {payload.filter(p => p.room === room).map((data, index) => {
+                                                    return (
+                                                        <li key={index}
+                                                            className="fontSize p-1 discordColor3-t">{data.userName}: <span>{data.message}</span>
+                                                        </li>
+                                                    )
+                                            })}
+                                            </>
+                                        )
                                     })}
-                                    </>
+                                </ul>
+                            </div>
+                            <form id="form" onSubmit={sendMessage} className="row h-auto mt-5 align-items-end">
+                                <div className="col-10 g-0">
+                                    <input type="text" id="input" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
+                                </div>
+                                <div className="col-2 g-0">
+                                    <button type="submit" className="btn ms-0 btn-success">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div className="col-3 discordColor3">
+                            <h1 className="text-white fw-bold">Active now</h1>
+                            {users.map((user, index) => {
+                                return (
+                                    <ul className="messageWindow list-group mh-100" key={index} id="users">
+                                        {user.map((userName, index) => {
+                                            return (
+                                                <li className="fontSize p-1 discordColor3-t" key={index}>{userName[1]} </li>
+                                            )
+                                        })}
+                                    </ul>
                                 )
                             })}
-                        </ul>
+                        </div>
                     </div>
-                    <form id="form" onSubmit={sendMessage} className="row h-auto mt-5 align-items-end">
-                        <div className="col-10 g-0">
-                            <input type="text" id="input" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
-                        </div>
-                        <div className="col-2 g-0">
-                            <button type="submit" className="btn ms-0 btn-success">Send</button>
-                        </div>
-                    </form>
-                </div>
-                <div className="col-2 discordColor3">
-                    <h1 className="text-white fw-bold">Active now</h1>
-                    {users.map((user, index) => {
-                        return (
-                            <ul className="messageWindow list-group mh-100" key={index} id="users">
-                                {user.map((userName, index) => {
-                                    return (
-                                        <li className="fontSize p-1 discordColor3-t" key={index}>{userName[1]} </li>
-                                    )
-                                })}
-                            </ul>
-                        )
-                    })}
                 </div>
             </div>
         </>

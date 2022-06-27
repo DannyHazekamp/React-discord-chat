@@ -6,22 +6,15 @@ import {Link} from "react-router-dom";
 const FriendIcon = () => {
 
     const [users, setUsers] = useState([])
-    const [onlineUsers, setOnlineUsers] = useState([])
-    const [unseenMessages, setUnseenMessages] = useState([])
     useEffect(() => {
         socket.on('usersList', data => {
             console.log(data)
             const uniqueUsers = Array.from(new Set(data.map(item => [item.id, item.userName])))
             console.log(JSON.stringify(uniqueUsers))
             setUsers([uniqueUsers])
-            setOnlineUsers([uniqueUsers.length])
         })
 
-        socket.on('unseenMessages', data => {
-            setUnseenMessages(data)
-        })
     })
-
 
             return (
                 <>
@@ -39,6 +32,8 @@ const FriendIcon = () => {
                                                 <span className="discordColor3-t">{userName[1]}</span>
                                             </Link>
                                         )
+                                    } else {
+                                        return false
                                     }
                                 })}
                             </div>

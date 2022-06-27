@@ -1,5 +1,5 @@
 import FriendIcon from "./FriendIcon";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 
 const Friends = () => {
     return (

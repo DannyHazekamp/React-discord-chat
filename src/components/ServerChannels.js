@@ -6,12 +6,14 @@ const ServerChannels = () => {
     return (
         <>
             <div className="row">
-                <h5 className="fw-bold text-white">Server name</h5>
-                <ServerChannel />
-                <ServerChannel2 />
-            </div>
-            <div className="row min-vh-100">
-                <ProfileBar />
+                <h5 className="fw-bold text-white">VueReact</h5>
+                <div className="col-6 col-sm-6 col-md-12 col-lg-12">
+                    <ServerChannel />
+                    <ServerChannel2 />
+                </div>
+                <div className="col-6 col-sm-6 col-md-12 col-lg-12">
+                    <ProfileBar />
+                </div>
             </div>
         </>
     )

@@ -18,13 +18,39 @@ const Login = () => {
     }
 
     return (
-        <form>
-            <div className="mb-3">
-                <label htmlFor="username" className="form-label">Username</label>
-                <input type="text"  onChange={(e) => {setUser(e.target.value)}} className="form-control" id="username" aria-describedby="usernameHelp" />
+        <>
+            <div className="container-fluid  min-vh-100 align-items-center discordColor3 discordColor3-t">
+                <div className="row min-vh-100 justify-content-center">
+                    <div className="col-7 offset-4 align-self-center">
+                        <div className="card discordColor2 discordColor3-t w-50">
+                            <div className="text-center card-header">
+                                Login
+                            </div>
+                            <div className="card-body text-center">
+                                <div className="row justify-content-center">
+                                <form>
+                                    <h5 className="card-title"><label htmlFor="username" className="form-label">Username</label></h5>
+                                    <div className="form-group">
+                                        <div className="col-xs-6 col-xs-offset-3">
+                                            <input type="text"  onChange={(e) => {setUser(e.target.value)}} className="form-control  text-center align-center" id="username" aria-describedby="usernameHelp" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <div className="col-xs-6 col-xs-offset-3">
+                                            <button type="submit" onClick={handleLogin} className="btn mt-2 btn-primary">Login</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                            <div className="card-footer discordColor3-t text-center">
+                                Discord clone
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button type="submit" onClick={handleLogin} className="btn btn-primary">Submit</button>
-        </form>
+        </>
     )
 }
 

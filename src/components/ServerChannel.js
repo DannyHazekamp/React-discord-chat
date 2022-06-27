@@ -7,6 +7,7 @@ const ServerChannel = () => {
     const joinRoom = () => {
         socket.emit('leaveRoom', {otherRoom, userName})
         socket.emit('setRoom', {room, userName})
+        socket.emit('userToHome')
     }
 
     return (

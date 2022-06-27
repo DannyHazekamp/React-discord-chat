@@ -6,28 +6,20 @@ import React from "react";
 import {useAuth} from "../auth";
 
 const ProfileBar = () => {
-    //const user = sessionStorage.getItem('user')
     const [users, setUsers] = useState([])
-    const [onlineUsers, setOnlineUsers] = useState([])
-    const [unseenMessages, setUnseenMessages] = useState([])
 
     const [user, setUser] = useState('')
-    // const [room, setRoom] = useState('')
     const auth = useAuth()
     const navigate = useNavigate()
 
     const handleUpdate = () => {
-
         socket.emit('updateUser', {newUser: user, oldUser: sessionStorage.getItem('user')})
 
         auth.login(user)
-        // socket.emit('setRoom', room
-        // setRoom('')
         navigate('/home', {replace: true})
     }
 
     const handleLogout = () => {
-
         socket.emit('logoutUser', sessionStorage.getItem('user'))
         auth.logout()
         navigate('/')
@@ -37,12 +29,8 @@ const ProfileBar = () => {
         socket.on('usersList', data => {
             const uniqueUsers = Array.from(new Set(data.map(item => [item.id, item.userName])))
             setUsers([uniqueUsers])
-            setOnlineUsers([uniqueUsers.length])
         })
 
-        socket.on('unseenMessages', data => {
-            setUnseenMessages(data)
-        })
 
     })
     return (
@@ -65,18 +53,13 @@ const ProfileBar = () => {
                                     <Link  className="text-decoration-none discordColor3" onClick={() => privateUser(userName[0])} to="/privatechat">
                                         <i className="text-decoration-none fa-solid me-3 fa-xl fa-inbox"></i>
                                     </Link>
-                                    <a className="discordColor2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button className="discordColor2 btn p-0 btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i className="fa-solid fa-xl discordColor3-t fa-solid fa-gear"></i>
-                                    </a>
-                                    <a className="discordColor2" onClick={handleLogout}>
+                                    </button>
+                                    <button className="discordColor2 btn p-0 btn-link" onClick={handleLogout}>
                                         <i className="fa-solid fa-xl ms-3 discordColor3-t fa-arrow-right-from-bracket"></i>
-                                    </a>
+                                    </button>
                                 </div>
-
-                                    {/*<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">*/}
-                                    {/*    Launch demo modal*/}
-                                    {/*</button>*/}
-
 
                                     <div className="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div className="modal-dialog discordColor2">
@@ -100,6 +83,9 @@ const ProfileBar = () => {
                                     </div>
                                 </>
                             )}
+                            else {
+                                return false
+                            }
                         })}
                     </div>
                 )

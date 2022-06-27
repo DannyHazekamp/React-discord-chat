@@ -1,11 +1,8 @@
-import io from "socket.io-client";
 import {useEffect, useState} from "react";
-import {useAuth} from "./auth";
 import {socket} from './socket'
-//const socket = io.connect("http://localhost:7000");
+
 const ChannelChat = () => {
 
-    const auth = useAuth()
     const [message, setMessage] = useState('')
     const [chat, setChat] = useState([])
     const userName = sessionStorage.getItem('user')
@@ -27,7 +24,7 @@ const ChannelChat = () => {
     return (
         <>
                 <div className="row min-vh-100 text-white">
-                    <ul className="messageWindow list-group mh-100" id="messages">
+                    <ul className="messageWindow  list-group mh-100" id="messages">
                         {chat.map((payload, index) => {
                             return (
                                 <>
@@ -53,12 +50,5 @@ const ChannelChat = () => {
     )
 
 }
-
-
-// const sendMessage = () => {
-//     let payload = document.getElementById('input')
-//         socket.emit('message', payload.value);
-//         payload.value = '';
-// }
 
 export default ChannelChat;

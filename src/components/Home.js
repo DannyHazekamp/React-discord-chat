@@ -2,10 +2,8 @@ import Header from "./Header";
 import ServerList from "./ServerList";
 import FriendList from "./FriendList";
 import FriendsTopBar from "./FriendsTopBar";
-import FriendOverview from "./FriendOverview";
 import FriendStatus from "./FriendStatus";
 import React, {useEffect, useState} from "react";
-import {useAuth} from "./auth";
 import {socket} from "./socket";
 import discordicon from "../img/discordicon.png";
 import {Link} from "react-router-dom";
@@ -33,14 +31,13 @@ const Home = () => {
         })
     })
 
-    const auth = useAuth()
     return (
         <>
-        <div className="row">
+        <div className="row h-auto m-auto">
             <Header></Header>
         </div>
-        <div className="row min-vh-100">
-            <div className="col-sm-1 col-md-1 col-lg-1 discordColor1">
+        <div className="row h-100 m-auto">
+            <div className="col-sm-1 d-flex align-items-sm-end align-items-md-start align-items-lg-start justify-content-center  col-md-1 col-lg-1 discordColor1">
                 <ServerList></ServerList>
             </div>
             <div className="discordColor2 col-sm-2 col-md-2 col-lg-2">

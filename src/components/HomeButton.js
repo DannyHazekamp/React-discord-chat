@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {socket} from "./socket";
 
 const HomeButton = () => {
@@ -13,9 +13,9 @@ const HomeButton = () => {
 
     return (
         <>
-            <Link onClick={toHome} className="align-self-center" to="/home">
+            <NavLink onClick={toHome} data-toggle="tooltip" data-placement="right" title="To home" className="align-self-center border-bottom border-secondary" to="/home">
                 <i className="fa-brands discordColor3-t fa-3x fa-discord"></i>
-            </Link>
+            </NavLink>
         </>
     )
 }

@@ -13,7 +13,7 @@ const DiscordServer = () => {
 
     const [users, setUsers] = useState([])
     useEffect(() => {
-       // const currentUser = sessionStorage.getItem('user')
+
         socket.on('roomUsers', data => {
             const uniqueUsers = Array.from(new Set(data.map(item => item.userName)))
             setUsers( [uniqueUsers])
@@ -23,20 +23,19 @@ const DiscordServer = () => {
 
     return (
         <>
-                <div className="row">
+                <div className="row h-auto m-auto">
                     <Header></Header>
                 </div>
-                <div className="row min-vh-100">
-                    <div className="col-1 sideBar-w discordColor1">
-                        <h1 className="text-white">Ch 1</h1>
+                <div className="row m-auto h-auto">
+                    <div className=" col-sm-1 col-md-1 col-lg-1 sideBar-w discordColor1">
                         <ServerList></ServerList>
                     </div>
-                    <div className="col-2 discordColor2">
+                    <div className="col-sm-2 col-md-2 col-lg-2 discordColor2">
                         <ServerChannels />
                     </div>
-                    <div className="col-9 discordColor3">
+                    <div className="col-sm-9 col-md-9 col-lg-9 discordColor3">
                         <ChannelTopBar />
-                        <div className="row">
+                        <div className="row min-vh-100">
                             <div className="col-9">
                                 <ChannelChat />
                             </div>

@@ -1,11 +1,8 @@
-import io from "socket.io-client";
 import {useEffect, useState} from "react";
-import {useAuth} from "./auth";
 import {socket} from './socket'
-//const socket = io.connect("http://localhost:7000");
+
 const ChannelChatTwo = () => {
 
-    const auth = useAuth()
     const [message, setMessage] = useState('')
     const [chat, setChat] = useState([])
     const userName = sessionStorage.getItem('user')

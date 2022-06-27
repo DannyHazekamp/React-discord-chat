@@ -21,11 +21,9 @@ io.on('connection', socket =>{
         if(payload.room === 'React') {
             reactMessages.push(payload)
             io.in(payload.room).emit('message', reactMessages)
-            //io.in(payload.room).emit('roomUsers', reactMessages)
         } else {
             vueMessages.push(payload)
             io.in(payload.room).emit('message', vueMessages)
-           // io.in(payload.room).emit('roomUsers', vueMessages)
         }
     })
 
@@ -68,14 +66,8 @@ io.on('connection', socket =>{
 
     socket.on('setUsers', user => {
         users.push({id: socket.id, userName: user});
-     //  users.push({userName: user})
-        console.log(users)
         io.sockets.emit('usersList', users)
     })
-
-    // socket.on('toHome', () => {
-    //   socket.rooms.size === 0;
-    // })
 
     socket.on('setRoom', data => {
         try{
@@ -98,12 +90,9 @@ io.on('connection', socket =>{
     })
 
     socket.on('updateUser', data => {
-        console.log(data)
         users = users.filter(p => p.userName !== data.oldUser)
         users.push({id: socket.id, userName: data.newUser})
-        console.log(users)
         io.sockets.emit('usersList', users)
-
     })
 
     socket.on('leaveRoom', data => {
