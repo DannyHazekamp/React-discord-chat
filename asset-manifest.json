@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/DannyHazekamp/React-discord-chat/static/css/main.422678d4.css",
+    "main.js": "/DannyHazekamp/React-discord-chat/static/js/main.9adf7f2f.js",
+    "static/js/787.59784a59.chunk.js": "/DannyHazekamp/React-discord-chat/static/js/787.59784a59.chunk.js",
+    "static/media/discordicon.png": "/DannyHazekamp/React-discord-chat/static/media/discordicon.44ce0cd3f3fb8d87a5c6.png",
+    "index.html": "/DannyHazekamp/React-discord-chat/index.html",
+    "main.422678d4.css.map": "/DannyHazekamp/React-discord-chat/static/css/main.422678d4.css.map",
+    "main.9adf7f2f.js.map": "/DannyHazekamp/React-discord-chat/static/js/main.9adf7f2f.js.map",
+    "787.59784a59.chunk.js.map": "/DannyHazekamp/React-discord-chat/static/js/787.59784a59.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.422678d4.css",
+    "static/js/main.9adf7f2f.js"
+  ]
+}
