@@ -1,7 +1,7 @@
 {
   "name": "react-chat-app",
   "version": "0.1.0",
-  "homepage": "https://github.com/DannyHazekamp/React-discord-chat",
+  "homepage": "https://dannyhazekamp.github.io/React-discord-chat/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
