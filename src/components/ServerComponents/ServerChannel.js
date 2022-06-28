@@ -1,4 +1,4 @@
-import {Link, NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {socket} from "../socket";
 const ServerChannel = () => {
     const room = 'React'

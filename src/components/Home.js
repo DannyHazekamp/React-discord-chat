@@ -56,12 +56,12 @@ const Home = () => {
                         <div className="row g-0">
                             {users.map((user) => {
                             return (
-                                    user.map((userName) => {
+                                    user.map((userName, index) => {
                                         const privateUser = (data) => {
                                             socket.emit('privateChat', data)
                                         }
                                         return (
-                                            <div key={userName[0]} className=" border-top border-secondary pe-0 row align-content-center">
+                                            <div key={index} className=" border-top border-secondary pe-0 row align-content-center">
                                                 <div className="col-4 col-sm-4 col-md-4 col-lg-4">
                                                     <Link className="text-decoration-none" onClick={() => privateUser(userName[0])} to="/privatechat">
                                                         <img alt="serverIcon" className="friendIcon" src={discordicon}/>
@@ -88,8 +88,8 @@ const Home = () => {
                         <FriendStatus />
                             {users.map((user, index) => {
                                 return (
-                                    <div className="row">
-                                        <ul key={index} className="messageWindow text-truncate list-group mh-100" id="users">
+                                    <div key={index} className="row">
+                                        <ul className="messageWindow text-truncate list-group mh-100" id="users">
                                             {user.map((userName) => {
                                                 return (
                                                     <li key={userName[0]} className="fontSize p-1 discordColor3-t">{userName[1]} </li>
