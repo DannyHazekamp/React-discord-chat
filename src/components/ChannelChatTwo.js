@@ -17,8 +17,12 @@ const ChannelChatTwo = () => {
 
     const sendMessage2 = (e) => {
         e.preventDefault();
-        socket.emit('message', {userName, message, room})
-        setMessage('')
+        if(message === '') {
+            return false;
+        } else {
+            socket.emit('message', {userName, message, room})
+            setMessage('')
+        }
     }
 
     return (
@@ -40,10 +44,10 @@ const ChannelChatTwo = () => {
             </div>
             <form id="form" onSubmit={sendMessage2} className="row h-auto mt-5 align-items-end">
                 <div className="col-10 g-0">
-                    <input type="text" id="input" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
+                    <input type="text" required="required" id="input" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
                 </div>
                 <div className="col-2 g-0">
-                    <button type="submit" className="btn ms-0 btn-success">Send</button>
+                    <button type="submit" className="btn w-100 ms-0 btn-success">Send</button>
                 </div>
             </form>
         </>

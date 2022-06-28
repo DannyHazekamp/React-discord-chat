@@ -10,11 +10,15 @@ const Login = () => {
     const navigate = useNavigate()
 
     const handleLogin = () => {
-        auth.login(user)
-        // socket.emit('setRoom', room
-        socket.emit('setUsers', user)
-        // setRoom('')
-        navigate('/home', {replace: true})
+        if(user === '') {
+            return false;
+        } else {
+            auth.login(user)
+            // socket.emit('setRoom', room
+            socket.emit('setUsers', user)
+            // setRoom('')
+            navigate('/home', {replace: true})
+        }
     }
 
     return (
@@ -32,7 +36,7 @@ const Login = () => {
                                     <h5 className="card-title"><label htmlFor="username" className="form-label">Username</label></h5>
                                     <div className="form-group">
                                         <div className="col-xs-6 col-xs-offset-3">
-                                            <input type="text"  onChange={(e) => {setUser(e.target.value)}} className="form-control  text-center align-center" id="username" aria-describedby="usernameHelp" />
+                                            <input type="text" required="required" onChange={(e) => {setUser(e.target.value)}} className="form-control  text-center align-center" id="username" aria-describedby="usernameHelp" />
                                         </div>
                                     </div>
                                     <div className="form-group">

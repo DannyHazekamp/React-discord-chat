@@ -65,18 +65,17 @@ const Home = () => {
                                             <>
                                             <div key={userName[0]} className=" border-top border-secondary row align-content-center">
                                                 <div className="col">
-                                                    <a href="src/components/Friendlist/FriendIcon#"
-                                                       className="text-decoration-none  ripple" aria-current="true">
+                                                    <Link className="text-decoration-none" onClick={() => privateUser(userName[0])} to="/privatechat">
                                                         <img alt="serverIcon" className="friendIcon" src={discordicon}/>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                                 <div className="col">
                                                     <span className="text-white fw-bold">{userName[1]}</span> <br></br>
                                                     <span className="discordColor3-t">Online</span>
                                                 </div>
-                                                <div className="col discordColor3-t">
+                                                <div className="col text-center align-middle discordColor3-t">
                                                     <Link className="text-decoration-none" onClick={() => privateUser(userName[0])} to="/privatechat">
-                                                        <i className="fa-solid me-4 fa-xl fa-message"></i>
+                                                        <i className="fa-solid me-4 fa-xl align-middle fa-message"></i>
                                                     </Link>
                                                     {userName[0] === socket.id ? unseenMessages.filter(p => p.room === socket.id).length + ' messages obtained' : unseenMessages.filter(p => p.room !== socket.id && p.room === userName[0] && p.username === sessionStorage.getItem('user')).length + ' messages sent'}
                                                 </div>

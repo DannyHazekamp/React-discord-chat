@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import {socket} from "./socket";
 const ServerIcon = () => {
 
@@ -10,10 +10,16 @@ const ServerIcon = () => {
         socket.emit('userToHome')
     }
 
+    let activeClassName = "border-5 border-bottom border-primary";
+    let location = useLocation().pathname
     return (
 
                 <NavLink onClick={joinRoom} data-toggle="tooltip" data-placement="right" title="To server" className="align-self-center" to="/server">
-                    <i className="fa-brands discordColor3-t fa-3x fa-discord"></i>
+                    {({ isActive }) => (
+                        <span className={ isActive || location === "/serverchanneltwo" ? activeClassName : undefined }>
+                            <i className="fa-brands discordColor3-t fa-3x fa-discord"></i>
+                        </span>
+                    )}
                 </NavLink>
     )
 }

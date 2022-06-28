@@ -50,7 +50,7 @@ const ProfileBar = () => {
                                     <span className="discordColor3-t">{userName[1]}</span>
                                 </div>
                                 <div className="col align-self-center discordColor3-t">
-                                    <Link  className="text-decoration-none discordColor3" onClick={() => privateUser(userName[0])} to="/privatechat">
+                                    <Link  className="text-decoration-none btn btn-link p-0 discordColor3" onClick={() => privateUser(userName[0])} to="/privatechat">
                                         <i className="text-decoration-none fa-solid me-3 fa-xl fa-inbox"></i>
                                     </Link>
                                     <button className="discordColor2 btn p-0 btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">

@@ -1,5 +1,6 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import {socket} from "./socket";
+
 
 const HomeButton = () => {
     const user = sessionStorage.getItem('user')
@@ -11,10 +12,17 @@ const HomeButton = () => {
         socket.emit('userToHome')
     }
 
+    let activeClassName = " border-4 border-bottom border-primary";
+    let location = useLocation().pathname
+
     return (
         <>
-            <NavLink onClick={toHome} data-toggle="tooltip" data-placement="right" title="To home" className="align-self-center border-bottom border-secondary" to="/home">
-                <i className="fa-brands discordColor3-t fa-3x fa-discord"></i>
+            <NavLink onClick={toHome} data-toggle="tooltip" data-placement="right" title="To home" className="align-self-center active border-bottom border-secondary" to="/home">
+                {({ isActive }) => (
+                    <span className={ isActive || location === "/privatechat" ? activeClassName : undefined }>
+                        <i className="fa-brands discordColor3-t fa-3x fa-discord"></i>
+                    </span>
+                )}
             </NavLink>
         </>
     )

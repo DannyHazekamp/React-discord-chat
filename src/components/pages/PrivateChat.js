@@ -40,9 +40,13 @@ const PrivateChat = () => {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        socket.emit('messagePrivate', {userName, message, room})
-        socket.emit('messagesUnseen', {userName, message, room})
-        setMessage('')
+        if(message === '') {
+            return false;
+        } else {
+            socket.emit('messagePrivate', {userName, message, room})
+            socket.emit('messagesUnseen', {userName, message, room})
+            setMessage('')
+        }
     }
 
     return (
@@ -79,14 +83,14 @@ const PrivateChat = () => {
                             </div>
                             <form id="form" onSubmit={sendMessage} className="row h-auto mt-5 align-items-end">
                                 <div className="col-10 g-0">
-                                    <input type="text" id="input" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
+                                    <input type="text" id="input" required="required" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
                                 </div>
                                 <div className="col-2 g-0">
-                                    <button type="submit" className="btn ms-0 btn-success">Send</button>
+                                    <button type="submit" className="btn w-100 ms-0 btn-success">Send</button>
                                 </div>
                             </form>
                         </div>
-                        <div className="col-3 discordColor3">
+                        <div className="col-3 discordColor2">
                             <h1 className="text-white fw-bold">Active now</h1>
                             {users.map((user, index) => {
                                 return (
