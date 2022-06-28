@@ -39,7 +39,6 @@ io.on('connection', socket =>{
     })
 
     socket.on('privateChat', data => {
-         //socket.to(data).emit("private message", socket.id, 'hello there')
         if(socket.id !== data) {
             socket.join(data)
             io.in(data).emit('userJoined', data)
@@ -71,7 +70,7 @@ io.on('connection', socket =>{
 
     socket.on('setRoom', data => {
         try{
-            console.log('[socket]','join room :',data.room)
+            console.log('A user','joined the room :',data.room)
             usersRoom.push({room: data.room, userName: data.userName})
 
             let usersReact = usersRoom.filter(p => p.room === 'React')
@@ -97,7 +96,7 @@ io.on('connection', socket =>{
 
     socket.on('leaveRoom', data => {
         try{
-            console.log('[socket]','left room :', data.otherRoom)
+            console.log('A user','left the room :', data.otherRoom)
             usersRoom = usersRoom.filter(p => p.userName !== data.userName)
             socket.leave(data.otherRoom)
             socket.to(data.otherRoom).emit('roomUsers', usersRoom)

@@ -13,10 +13,14 @@ const ProfileBar = () => {
     const navigate = useNavigate()
 
     const handleUpdate = () => {
-        socket.emit('updateUser', {newUser: user, oldUser: sessionStorage.getItem('user')})
+        if(user === '') {
+            return false;
+        } else {
+            socket.emit('updateUser', {newUser: user, oldUser: sessionStorage.getItem('user')})
 
-        auth.login(user)
-        navigate('/home', {replace: true})
+            auth.login(user)
+            navigate('/home', {replace: true})
+        }
     }
 
     const handleLogout = () => {
@@ -72,7 +76,7 @@ const ProfileBar = () => {
                                                     <form>
                                                         <div className="mb-3">
                                                             <label htmlFor="username" className="text-white form-label">Username</label>
-                                                            <input type="text" defaultValue={userName[1]} placeholder={userName[1]} onChange={(e) => {setUser(e.target.value)}} className="form-control" id="username" aria-describedby="usernameHelp" />
+                                                            <input type="text" required="required" defaultValue={userName[1]} placeholder={userName[1]} onChange={(e) => {setUser(e.target.value)}} className="form-control" id="username" aria-describedby="usernameHelp" />
                                                         </div>
                                                         <button type="button" className="btn text-white btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                                         <button type="submit" onClick={handleUpdate} data-bs-dismiss="modal" className="btn btn-primary">Done</button>
