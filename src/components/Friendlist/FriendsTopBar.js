@@ -1,7 +1,7 @@
 import React from "react";
-import {useAuth} from "./auth";
+import {useAuth} from "../auth/auth";
 import {useNavigate} from 'react-router-dom'
-import {socket} from "./socket";
+import {socket} from "../socket";
 
 const FriendsTopBar = () => {
     const auth = useAuth()

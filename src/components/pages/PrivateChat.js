@@ -66,17 +66,15 @@ const PrivateChat = () => {
                         <div className="col-9 discordColor3 me-0">
                             <div className="row vh-100 text-white">
                                 <ul className="messageWindow list-group mh-100" id="messages">
-                                    {chat.map((payload, index) => {
+                                    {chat.map((payload) => {
                                         return (
-                                            <>
-                                            {payload.filter(p => p.room === room).map((data, index) => {
+                                            payload.filter(p => p.room === room).map((data, index) => {
                                                     return (
                                                         <li key={index}
                                                             className="fontSize p-1 discordColor3-t">{data.userName}: <span>{data.message}</span>
                                                         </li>
                                                     )
-                                            })}
-                                            </>
+                                            })
                                         )
                                     })}
                                 </ul>

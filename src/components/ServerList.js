@@ -1,6 +1,6 @@
 import React from 'react';
-import ServerIcon from './ServerIcon'
-import HomeButton from "./HomeButton";
+import ServerIcon from './ServerComponents/ServerIcon'
+import HomeButton from "./ServerComponents/HomeButton";
 const ServerList = () => {
     return (
         <>

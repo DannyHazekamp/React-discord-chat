@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { useNavigate } from 'react-router-dom'
 import {useAuth} from "./auth";
-import {socket} from './socket'
+import {socket} from '../socket'
 const Login = () => {
 
     const [user, setUser] = useState('')
@@ -32,7 +32,7 @@ const Login = () => {
                             </div>
                             <div className="card-body text-center">
                                 <div className="row justify-content-center">
-                                <form>
+                                <form onSubmit={handleLogin}>
                                     <h5 className="card-title"><label htmlFor="username" className="form-label">Username</label></h5>
                                     <div className="form-group">
                                         <div className="col-xs-6 col-xs-offset-3">
@@ -41,7 +41,7 @@ const Login = () => {
                                     </div>
                                     <div className="form-group">
                                         <div className="col-xs-6 col-xs-offset-3">
-                                            <button type="submit" onClick={handleLogin} className="btn mt-2 btn-primary">Login</button>
+                                            <button type="submit" className="btn mt-2 btn-primary">Login</button>
                                         </div>
                                     </div>
                                 </form>

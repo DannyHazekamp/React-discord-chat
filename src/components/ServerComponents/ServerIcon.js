@@ -1,6 +1,6 @@
 import * as React from "react";
 import {NavLink, useLocation} from "react-router-dom";
-import {socket} from "./socket";
+import {socket} from "../socket";
 const ServerIcon = () => {
 
     const room = 'React'

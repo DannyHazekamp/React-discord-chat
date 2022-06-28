@@ -1,5 +1,5 @@
 import {NavLink, useLocation} from "react-router-dom";
-import {socket} from "./socket";
+import {socket} from "../socket";
 
 
 const HomeButton = () => {

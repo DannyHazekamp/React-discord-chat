@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {socket} from "../socket";
 import {Link, useNavigate} from "react-router-dom";
 import React from "react";
-import {useAuth} from "../auth";
+import {useAuth} from "../auth/auth";
 
 const ProfileBar = () => {
     const [users, setUsers] = useState([])
@@ -38,17 +38,16 @@ const ProfileBar = () => {
 
     })
     return (
-        <>
-            {users.map((user, index) => {
+            users.map((user, index) => {
                 return (
-                    <div key={index} className="d-flex align-items-end align-self-end">
+                    <div key={index} className="row align-items-end align-self-end">
                         {user.map((userName) => {
                             const privateUser = (data) => {
                                 socket.emit('privateChat', data)
                             }
                             if(userName[1] === sessionStorage.getItem('user')) {
                                 return (
-                                <>
+                                <div className="d-flex" key={userName[0]}>
                                 <div className="col align-self-center">
                                     <img alt="serverIcon" className="friendIcon" src={discordicon}/>
                                     <span className="discordColor3-t">{userName[1]}</span>
@@ -85,7 +84,7 @@ const ProfileBar = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </>
+                                </div>
                             )}
                             else {
                                 return false
@@ -93,8 +92,8 @@ const ProfileBar = () => {
                         })}
                     </div>
                 )
-            })}
-        </>
+            })
+
     )
 }
 

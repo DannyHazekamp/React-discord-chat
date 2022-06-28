@@ -1,21 +1,23 @@
 import {Link} from "react-router-dom";
-import {socket} from "./socket";
-const ServerChannel = () => {
-    const room = 'React'
-    const otherRoom = 'Vue'
+import {socket} from "../socket";
+
+const ServerChannel2 = () => {
+    const room = 'Vue'
+    const otherRoom = 'React'
     const userName = sessionStorage.getItem('user')
-    const joinRoom = () => {
+    const joinRoom2 = () => {
         socket.emit('leaveRoom', {otherRoom, userName})
         socket.emit('setRoom', {room, userName})
         socket.emit('userToHome')
     }
 
+
     return (
         <>
             <div className="row">
-                <Link onClick={joinRoom} className="text-decoration-none" to="/server">
-                    <p className=" text-decoration-none discordColor3-t">
-                        # Channel React
+                <Link onClick={joinRoom2} className="text-decoration-none" to="/serverchanneltwo">
+                    <p className="discordColor3-t">
+                        # Channel Vue
                     </p>
                 </Link>
             </div>
@@ -23,4 +25,4 @@ const ServerChannel = () => {
     )
 }
 
-export default ServerChannel;
+export default ServerChannel2;

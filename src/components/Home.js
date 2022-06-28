@@ -1,8 +1,8 @@
 import Header from "./Header";
 import ServerList from "./ServerList";
 import FriendList from "./FriendList";
-import FriendsTopBar from "./FriendsTopBar";
-import FriendStatus from "./FriendStatus";
+import FriendsTopBar from "./Friendlist/FriendsTopBar";
+import FriendStatus from "./Friendlist/FriendStatus";
 import React, {useEffect, useState} from "react";
 import {socket} from "./socket";
 import discordicon from "../img/discordicon.png";
@@ -54,15 +54,13 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="row g-0">
-                            {users.map((user, index) => {
+                            {users.map((user) => {
                             return (
-                                <>
-                                    {user.map((userName) => {
+                                    user.map((userName) => {
                                         const privateUser = (data) => {
                                             socket.emit('privateChat', data)
                                         }
                                         return (
-                                            <>
                                             <div key={userName[0]} className=" border-top border-secondary row align-content-center">
                                                 <div className="col">
                                                     <Link className="text-decoration-none" onClick={() => privateUser(userName[0])} to="/privatechat">
@@ -80,10 +78,8 @@ const Home = () => {
                                                     {userName[0] === socket.id ? unseenMessages.filter(p => p.room === socket.id).length + ' messages obtained' : unseenMessages.filter(p => p.room !== socket.id && p.room === userName[0] && p.username === sessionStorage.getItem('user')).length + ' messages sent'}
                                                 </div>
                                             </div>
-                                            </>
                                     )
-                                    })}
-                            </>
+                                    })
                             )
                             })}
                         </div>
@@ -92,10 +88,10 @@ const Home = () => {
                         <FriendStatus />
                             {users.map((user, index) => {
                                 return (
-                                    <ul className="messageWindow list-group mh-100" key={index} id="users">
-                                        {user.map((userName, index) => {
+                                    <ul key={index} className="messageWindow list-group mh-100" id="users">
+                                        {user.map((userName) => {
                                             return (
-                                                <li className="fontSize p-1 discordColor3-t" key={index}>{userName[1]} </li>
+                                                <li key={userName[0]} className="fontSize p-1 discordColor3-t">{userName[1]} </li>
                                             )
                                         })}
                                     </ul>

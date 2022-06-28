@@ -1,6 +1,6 @@
 import ServerChannel from "./ServerChannel";
 import ServerChannel2 from "./ServerChannel2";
-import ProfileBar from "./Friendlist/ProfileBar";
+import ProfileBar from "../Friendlist/ProfileBar";
 
 const ServerChannels = () => {
     return (

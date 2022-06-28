@@ -1,11 +1,11 @@
 import React from 'react';
 import {Routes, Route, useNavigate} from "react-router-dom";
-import DiscordServer from "./components/pages/DiscordServer";
+import DiscordServer from "./components/pages/DiscordServer/DiscordServer";
 import Home from "./components/Home";
-import Login from "./components/Login";
-import {AuthProvider} from "./components/auth";
-import { RequireAuth } from "./components/RequireAuth"
-import DiscordServerTwo from "./components/pages/DiscordServerTwo";
+import Login from "./components/auth/Login";
+import {AuthProvider} from "./components/auth/auth";
+import { RequireAuth } from "./components/auth/RequireAuth"
+import DiscordServerTwo from "./components/pages/DiscordServerTwo/DiscordServerTwo";
 import PrivateChat from "./components/pages/PrivateChat";
 import {socket} from "./components/socket";
 import {useEffect} from "react";

@@ -1,10 +1,10 @@
-import Header from "../Header";
-import ServerChannels from "../ServerChannels";
-import ServerList from "../ServerList";
-import ChannelTopBar from "../ChannelTopBar";
-import ChannelChatTwo from "../ChannelChatTwo";
+import Header from "../../Header";
+import ServerChannels from "../../ServerComponents/ServerChannels";
+import ServerList from "../../ServerList";
+import ChannelTopBar from "../../ServerComponents/ChannelTopBar";
+import ChannelChatTwo from "./ChannelChatTwo";
 import {useEffect, useState} from "react";
-import {socket} from "../socket";
+import {socket} from "../../socket";
 
 
 
