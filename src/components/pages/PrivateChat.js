@@ -88,14 +88,14 @@ const PrivateChat = () => {
                                 </div>
                             </form>
                         </div>
-                        <div className="col-3 discordColor2">
+                        <div className="col-3 px-1 discordColor2">
                             <h1 className="text-white fw-bold">Active now</h1>
                             {users.map((user, index) => {
                                 return (
-                                    <ul className="messageWindow list-group mh-100" key={index} id="users">
+                                    <ul className="messageWindow text-truncate list-group mh-100" key={index} id="users">
                                         {user.map((userName, index) => {
                                             return (
-                                                <li className="fontSize p-1 discordColor3-t" key={index}>{userName[1]} </li>
+                                                <li className="fontSize discordColor3-t" key={index}>{userName[1]} </li>
                                             )
                                         })}
                                     </ul>

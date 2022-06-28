@@ -39,14 +39,14 @@ const DiscordServer = () => {
                             <div className="col-9">
                                 <ChannelChat />
                             </div>
-                                <div className="text-white discordColor2 col-3">
+                                <div className="text-white discordColor2 px-1 col-3">
                                     <h1 className="text-white fw-bold">Active now</h1>
                                     {users.map((el, index) => {
                                         return (
-                                            <ul className="messageWindow list-group mh-100" key={index}  id="users">
+                                            <ul className="messageWindow text-truncate list-group mh-100" key={index}  id="users">
                                                 {el.map((userName, index) => {
                                                     return (
-                                                    <li className="fontSize p-1 discordColor3-t" key={index}> {userName}  </li>
+                                                    <li className="fontSize discordColor3-t" key={index}> {userName}  </li>
                                                     )
                                                 })}
                                             </ul>

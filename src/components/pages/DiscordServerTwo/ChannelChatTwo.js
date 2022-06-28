@@ -33,19 +33,19 @@ const ChannelChatTwo = () => {
                         return (
                                 payload.map((data, index) => {
                                     return (
-                                        <li key={index} className="fontSize p-1 discordColor3-t"> {data.userName}: <span>{data.message}</span></li>
+                                        <li key={index} className="fontSize  p-1 discordColor3-t"> {data.userName}: <span>{data.message}</span></li>
                                     )
                                 })
                         )
                     })}
                 </ul>
             </div>
-            <form id="form" onSubmit={sendMessage2} className="row h-auto mt-5 align-items-end">
+            <form id="form" onSubmit={sendMessage2} className="row h-auto align-items-end">
                 <div className="col-10 g-0">
                     <input type="text" required="required" id="input" value={message} onChange={(e) => {setMessage(e.target.value)}} className="align-self-end me-0 form-control" />
                 </div>
                 <div className="col-2 g-0">
-                    <button type="submit" className="btn w-100 ms-0 btn-success">Send</button>
+                    <button type="submit" className="btn text-center w-100 ms-0 btn-success">Send</button>
                 </div>
             </form>
         </>

@@ -9,10 +9,11 @@ const Login = () => {
     const auth = useAuth()
     const navigate = useNavigate()
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
         if(user === '') {
             return false;
         } else {
+            e.preventDefault();
             auth.login(user)
             // socket.emit('setRoom', room
             socket.emit('setUsers', user)
@@ -25,8 +26,8 @@ const Login = () => {
         <>
             <div className="container-fluid  min-vh-100 align-items-center discordColor3 discordColor3-t">
                 <div className="row min-vh-100 justify-content-center">
-                    <div className="col-7 offset-4 align-self-center">
-                        <div className="card discordColor2 discordColor3-t w-50">
+                    <div className="col-7 offset-2 align-self-center">
+                        <div className="card discordColor2 discordColor3-t w-75">
                             <div className="text-center card-header">
                                 Login
                             </div>
@@ -36,7 +37,7 @@ const Login = () => {
                                     <h5 className="card-title"><label htmlFor="username" className="form-label">Username</label></h5>
                                     <div className="form-group">
                                         <div className="col-xs-6 col-xs-offset-3">
-                                            <input type="text" required="required" onChange={(e) => {setUser(e.target.value)}} className="form-control  text-center align-center" id="username" aria-describedby="usernameHelp" />
+                                            <input type="text" maxLength="20" required="required" onChange={(e) => {setUser(e.target.value)}} className="form-control  text-center align-center" id="username" aria-describedby="usernameHelp" />
                                         </div>
                                     </div>
                                     <div className="form-group">

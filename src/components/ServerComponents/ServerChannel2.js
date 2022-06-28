@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {socket} from "../socket";
 
 const ServerChannel2 = () => {
@@ -11,15 +11,18 @@ const ServerChannel2 = () => {
         socket.emit('userToHome')
     }
 
+    let activeClassName = "discordColor3-t border-3 border-bottom border-primary";
 
     return (
         <>
             <div className="row">
-                <Link onClick={joinRoom2} className="text-decoration-none" to="/serverchanneltwo">
-                    <p className="discordColor3-t">
-                        # Channel Vue
-                    </p>
-                </Link>
+                <NavLink onClick={joinRoom2} className="text-decoration-none" to="/serverchanneltwo">
+                    {({ isActive }) => (
+                        <span className={ isActive ? activeClassName : 'discordColor3-t text-decoration-none' }>
+                            # Channel Vue
+                        </span>
+                    )}
+                </NavLink>
             </div>
         </>
     )

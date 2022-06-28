@@ -47,20 +47,20 @@ const ProfileBar = () => {
                             }
                             if(userName[1] === sessionStorage.getItem('user')) {
                                 return (
-                                <div className="d-flex" key={userName[0]}>
-                                <div className="col align-self-center">
+                                <div className="d-flex  text-truncate flex-wrap" key={userName[0]}>
+                                <div className="col text-wrap align-self-center">
                                     <img alt="serverIcon" className="friendIcon" src={discordicon}/>
-                                    <span className="discordColor3-t">{userName[1]}</span>
+                                    <span className=" text-truncate discordColor3-t">{userName[1]}</span>
                                 </div>
                                 <div className="col align-self-center discordColor3-t">
                                     <Link  className="text-decoration-none btn btn-link p-0 discordColor3" onClick={() => privateUser(userName[0])} to="/privatechat">
-                                        <i className="text-decoration-none fa-solid me-3 fa-xl fa-inbox"></i>
+                                        <i className="text-decoration-none fa-solid px-1 fa-xl fa-inbox"></i>
                                     </Link>
                                     <button className="discordColor2 btn p-0 btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i className="fa-solid fa-xl discordColor3-t fa-solid fa-gear"></i>
+                                        <i className="fa-solid fa-xl px-1 discordColor3-t fa-solid fa-gear"></i>
                                     </button>
                                     <button className="discordColor2 btn p-0 btn-link" onClick={handleLogout}>
-                                        <i className="fa-solid fa-xl ms-3 discordColor3-t fa-arrow-right-from-bracket"></i>
+                                        <i className="fa-solid fa-xl px-1  discordColor3-t fa-arrow-right-from-bracket"></i>
                                     </button>
                                 </div>
 
@@ -75,7 +75,7 @@ const ProfileBar = () => {
                                                     <form>
                                                         <div className="mb-3">
                                                             <label htmlFor="username" className="text-white form-label">Username</label>
-                                                            <input type="text" required="required" defaultValue={userName[1]} placeholder={userName[1]} onChange={(e) => {setUser(e.target.value)}} className="form-control" id="username" aria-describedby="usernameHelp" />
+                                                            <input type="text" maxLength="20" required="required" defaultValue={userName[1]} placeholder={userName[1]} onChange={(e) => {setUser(e.target.value)}} className="form-control" id="username" aria-describedby="usernameHelp" />
                                                         </div>
                                                         <button type="button" className="btn text-white btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                                                         <button type="submit" onClick={handleUpdate} data-bs-dismiss="modal" className="btn btn-primary">Done</button>

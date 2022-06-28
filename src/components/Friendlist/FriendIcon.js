@@ -24,7 +24,7 @@ const FriendIcon = () => {
                                     }
                                     if(userName[1] !== sessionStorage.getItem('user')) {
                                         return (
-                                            <Link key={userName[0]} className="text-decoration-none discordColor2" onClick={() => privateUser(userName[0])} to="/privatechat">
+                                            <Link key={userName[0]} className="text-truncate text-decoration-none discordColor2" onClick={() => privateUser(userName[0])} to="/privatechat">
                                                 <img alt="serverIcon" className="friendIcon" src={discordicon}/>
                                                 <span className="discordColor3-t">{userName[1]}</span>
                                             </Link>

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 import {socket} from "../socket";
 const ServerChannel = () => {
     const room = 'React'
@@ -10,14 +10,19 @@ const ServerChannel = () => {
         socket.emit('userToHome')
     }
 
+    let activeClassName = "discordColor3-t border-3 border-bottom border-primary";
+   // let location = useLocation().pathname
+
     return (
         <>
             <div className="row">
-                <Link onClick={joinRoom} className="text-decoration-none" to="/server">
-                    <p className=" text-decoration-none discordColor3-t">
+                <NavLink onClick={joinRoom} className="text-decoration-none" to="/server">
+                    {({ isActive }) => (
+                        <span className={ isActive ? activeClassName : 'discordColor3-t text-decoration-none' }>
                         # Channel React
-                    </p>
-                </Link>
+                        </span>
+                        )}
+                </NavLink>
             </div>
         </>
     )
